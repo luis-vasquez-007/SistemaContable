@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Registro de empresas</title>
+
+<style type="text/css">
+    .ui-datatable-header {
+        height: 50px
+    }
+</style>
+</h:head>
+
+<h:body>
+	
+	<br></br>
+	<p:growl id="gr"></p:growl>
+	<h:form>
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Nombre de la empresa" />
+		<p:inputText  value="#{empresaController.empresa.nombreEmpresa}" />
+		
+		<p:outputLabel value="rubro de la empresa" />
+		<p:inputText  value="#{empresaController.empresa.rubro}" />
+		
+		<p:outputLabel value="sector empresarial" />
+		<p:inputText  value="#{empresaController.empresa.sector}" />
+		
+		<p:outputLabel value="clasificacion empresarial" />
+		<p:selectOneMenu value="#{empresaController.empresa.clasificacion}" >
+		<f:selectItem itemLabel="Seleccionar--" itemValue="0" noSelectionOption="true" ></f:selectItem>
+			<f:selectItem itemLabel="Pequeña" itemValue="Pequeña" ></f:selectItem>
+			<f:selectItem itemLabel="Mediana" itemValue="Mediana" ></f:selectItem>
+			<f:selectItem itemLabel="Grande" itemValue="Grande" ></f:selectItem>
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Numero Tributario" />
+		<p:inputText  value="#{empresaController.empresa.numeroTributario}" />
+		
+		<p:outputLabel value="Correo Electronco" />
+		<p:inputText  value="#{empresaController.empresa.correo}" />
+		
+		<p:outputLabel value="Telefono" />
+		<p:inputText  value="#{empresaController.empresa.telefono}" />
+		
+		<p:outputLabel value="Direccion" />
+		<p:inputText  value="#{empresaController.empresa.direccion}" />
+		
+		<p:outputLabel value="Pais" />
+		<p:selectOneMenu value="#{empresaController.idpaiss}">
+			<f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
+			<f:selectItems value="#{paisController.listaPais}" var="pa" itemValue="#{pa.idPais}" itemLabel="#{pa.nombrePais}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Estado" />	
+		<p:selectOneMenu value="#{empresaController.idesta}">
+			<f:selectItem itemLabel="Seleccionar" itemValue="0"></f:selectItem>
+			<f:selectItems value="#{estadoController.listaEstado}" var="est" itemValue="#{est.idEstado}" itemLabel="#{est.nombre}"></f:selectItems>
+		</p:selectOneMenu>
+	</p:panelGrid>
+		
+		<p:commandButton value="Guardar" action="#{empresaController.guardar()}" update="gr"></p:commandButton>
+		<p:commandButton value="Mostrar registro" onclick="PF('em').show();" rendered="false"></p:commandButton>
+		<p:commandButton value="Volver al login" action="#{empresaController.ira()}"></p:commandButton>
+	</h:form>
+	
+	<p:dialog widgetVar="em">
+		<p:dataTable value="#{empresaController.listEmp}" var="em" >
+		<f:facet name="header" >
+			<p:commandButton value="salir" onclick="PF('em').hide();"> </p:commandButton>
+		</f:facet>
+			<p:column headerText="Nombre Empresas">
+				<p:outputLabel value="#{em.nombreEmpresa}" />
+			</p:column>
+			
+			<p:column headerText="Rubro">
+				<p:outputLabel value="#{em.sector}" />
+			</p:column>
+			
+			<p:column headerText="Clasificacion">
+				<p:outputLabel value="#{em.clasificacion}" />
+			</p:column>
+			
+			<p:column headerText="Numero Tributario">
+				<p:outputLabel value="#{em.numeroTributario}" />
+			</p:column>
+			
+			<p:column headerText="Telefono">
+				<p:outputLabel value="#{em.telefono}" />
+			</p:column>
+			
+			<p:column headerText="Correo">
+				<p:outputLabel value="#{em.correo}" />
+			</p:column>
+			
+			
+		</p:dataTable>	
+	</p:dialog>
+	
+	
+</h:body>
+</html>

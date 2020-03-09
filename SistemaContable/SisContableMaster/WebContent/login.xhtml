@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+
+<div style="display:flex; align-items:center;
+ justify-content: center; ">
+<p:graphicImage url="img/grupo.jpg" height="330px" width="600px" ></p:graphicImage>
+</div>
+<center>
+<h:form>	
+<h:panelGrid columns="1" style="border-style:none;">
+	<p:inputText style="width:400px"></p:inputText>
+	
+	<p:outputLabel value="Nombre de la empresa" style="align-items:center; margin-left: 130px"></p:outputLabel>
+</h:panelGrid>
+<br></br>
+<h:panelGrid columns="2" style="border-style:none;">
+	<p:commandButton value="Continuar" action="loginUser.xhtml?faces-redirect=true"/>
+	<a href="registro_empresa.xhtml" style="margin-left: 200px"> crear una nueva empresa </a> 
+	
+</h:panelGrid>
+</h:form>
+</center>
+</h:body>
+</html>

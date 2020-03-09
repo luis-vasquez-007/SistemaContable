@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Registro de Usuario del sistema</title>
+
+<style type="text/css">
+    .ui-datatable-header {
+        height: 50px
+    }
+</style>
+</h:head>
+
+<h:body>
+
+	<br></br>
+	<p:growl id="gr"></p:growl>
+	<h:form>
+		<h:panelGrid columns="2" style="border-style:none;">
+		<p:outputLabel value="Usuario" />
+		<p:inputText  value="#{usuarioController.user.usuario}" />
+		
+		<p:outputLabel value="Contraseña" />
+		<p:inputText  value="#{usuarioController.user.contrasena}" />
+		
+		<p:outputLabel value="Nombre" />
+		<p:inputText  value="#{usuarioController.user.nombre}" />
+		
+		<p:outputLabel value="Apellido" />
+		<p:inputText  value="#{usuarioController.user.apellido}" />
+		
+		<p:outputLabel value="Correo Electronco" />
+		<p:inputText  value="#{usuarioController.user.correo}" />
+		
+		<p:outputLabel value="Seleccione la empresa donde labora"></p:outputLabel>
+		<p:selectOneMenu value="#{usuarioController.idEmp}">
+			<f:selectItem itemLabel="Seleccionar--" itemValue="0" noSelectionOption="true"></f:selectItem>
+			<f:selectItems value="#{empresaController.listEmp}" var="emp" itemValue="#{emp.idEmpresa}" itemLabel="#{emp.nombreEmpresa}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<p:commandButton value="Guardar" action="#{usuarioController.guardar()}" update="gr"></p:commandButton>
+		<p:commandButton value="Mostrar registro" onclick="PF('usu').show();" rendered="false"></p:commandButton>
+		<p:commandButton value="Volver al login" action="loginUser.xhtml"></p:commandButton>
+		</h:panelGrid>
+	</h:form>
+	
+	<p:dialog widgetVar="usu">
+		<p:dataTable value="#{usuarioController.listuser}" var="user" >
+		<f:facet name="header" >
+			<p:commandButton value="salir" onclick="PF('usu').hide();"> </p:commandButton>
+		</f:facet>
+			<p:column headerText="Usuario">
+				<p:outputLabel value="#{user.usuario}" />
+			</p:column>
+			
+			<p:column headerText="Contrasena">
+				<p:outputLabel value="#{user.contrasena}" />
+			</p:column>
+			
+			<p:column headerText="Nombre">
+				<p:outputLabel value="#{user.nombre}" />
+			</p:column>
+			
+			<p:column headerText="Apellido">
+				<p:outputLabel value="#{user.apellido}" />
+			</p:column>
+			
+			<p:column headerText="Correo">
+				<p:outputLabel value="#{user.correo}" />
+			</p:column>
+			
+		</p:dataTable>	
+	</p:dialog>
+	
+	
+</h:body>
+</html>
